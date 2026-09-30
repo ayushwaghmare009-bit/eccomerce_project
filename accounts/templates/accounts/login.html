@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - MyMarketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container my-5" style="max-width: 500px;">
+        <div class="card border-0 shadow-sm p-4">
+            <h2 class="fw-bold mb-4 text-center">Welcome Back</h2>
+            
+            <!-- Updated form action to preserve the 'next' query parameter -->
+            <form method="POST" action="?next={{ request.GET.next }}">
+                {% csrf_token %}
+                
+                <!-- Hidden input to pass the next URL back on POST -->
+                {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark w-100 btn-lg mt-3">Login</button>
+            </form>
+            
+            <p class="text-center mt-3 text-muted">Don't have an account? <a href="{% url 'register' %}" class="text-dark fw-bold">Register here</a></p>
+        </div>
+    </div>
+</body>
+</html>
