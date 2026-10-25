@@ -2,6 +2,5 @@ services:
   - type: web
     name: invoice-management-app
     runtime: python
-    rootDir: mysite
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    buildCommand: "pip install -r requirements.txt && python mysite/manage.py collectstatic --noinput"
     startCommand: "gunicorn mysite.wsgi:application"
